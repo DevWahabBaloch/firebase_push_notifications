@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "109721626132",
+    "project_id": "fir-push-noti-df827",
+    "storage_bucket": "fir-push-noti-df827.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:109721626132:android:eca36ab5224e7a35f76901",
+        "android_client_info": {
+          "package_name": "com.example.firebase_push_notification"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWMid_UJNh3cl-_vEmYBB6LQpNV6Z7arA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
