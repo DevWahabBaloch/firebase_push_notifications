@@ -24,4 +24,22 @@ class NotificationServices {
       log('User denied permission');
     }
   }
+
+  Future<String> getDeviveToken() async {
+    String? token = await messaging.getToken();
+    if (token != null) {
+      log('FCM token: $token');
+      return token;
+    } else {
+      log('Failed to get token');
+      return 'Failed to get token';
+    }
+  }
+
+  void isTokenRefresh() async {
+    messaging.onTokenRefresh.listen((event) {
+      event.toString();
+      log('isTokenRefreshed: ${event.toString()}');
+    });
+  }
 }

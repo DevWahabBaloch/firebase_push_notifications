@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_push_notification/core/services/notification_services.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +16,10 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     notificationServices.requestNotificationPermission();
+    notificationServices.isTokenRefresh();
+    notificationServices.getDeviveToken().then((value) {
+      log('Device Token: $value');
+    });
   }
 
   @override
