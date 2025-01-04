@@ -34,7 +34,7 @@ class NotificationServices {
 
   void inItLocalNotifications(BuildContext context, RemoteMessage message) async {
     // Initilizing the plugin instance
-    var androidInitializationSettings = const AndroidInitializationSettings("@mipmap/ic_launcher");
+    var androidInitializationSettings = const AndroidInitializationSettings('ic_launcher');
     var iosInitializationSettings = const DarwinInitializationSettings();
     var initializationSettings = InitializationSettings(
       android: androidInitializationSettings,
@@ -59,7 +59,11 @@ class NotificationServices {
         importance: Importance.max);
     AndroidNotificationDetails androidNotificationDetails = AndroidNotificationDetails(
         channel.id.toString(), channel.name.toString(),
-        channelDescription: 'Your channel description', importance: Importance.high, priority: Priority.high, ticker: 'ticker');
+        channelDescription: 'Your channel description',
+        importance: Importance.high,
+        priority: Priority.high,
+        ticker: 'ticker',
+        icon: 'ic_launcher');
 
     DarwinNotificationDetails darwinNotificationDetails =
         const DarwinNotificationDetails(presentAlert: true, presentBadge: true, presentSound: true);
