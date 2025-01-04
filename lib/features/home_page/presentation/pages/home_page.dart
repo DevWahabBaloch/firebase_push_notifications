@@ -16,6 +16,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     notificationServices.requestNotificationPermission();
+    notificationServices.firebaseInit();
     notificationServices.isTokenRefresh();
     notificationServices.getDeviveToken().then((value) {
       log('Device Token: $value');
@@ -24,6 +25,14 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Flutter Notifications',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.greenAccent,
+      ),
+    );
   }
 }

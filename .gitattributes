@@ -1,0 +1,10 @@
+# Handle line endings for text files
+* text=auto
+
+# Explicit line ending settings for specific file types
+*.sh text eol=lf
+*.swift text eol=lf
+*.cc text eol=lf
+*.h text eol=lf
+*.cmake text eol=lf
+*.lock text eol=lf
