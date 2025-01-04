@@ -54,14 +54,22 @@ class NotificationServices {
   }
 
   Future<void> showNotification(RemoteMessage message) async {
-    AndroidNotificationDetails androidNotificationDetails =
-        AndroidNotificationDetails(math.Random.secure().nextInt(1000000).toString(), 'High importance notifications');
+    AndroidNotificationChannel channel = AndroidNotificationChannel(
+        math.Random.secure().nextInt(100000).toString(), 'High Importance Notifications',
+        importance: Importance.max);
+    AndroidNotificationDetails androidNotificationDetails = AndroidNotificationDetails(
+        channel.id.toString(), channel.name.toString(),
+        channelDescription: 'Your channel description', importance: Importance.high, priority: Priority.high, ticker: 'ticker');
 
-    // Future.delayed(Duration.zero);
-    // _flutterLocalNotificationsPlugin.show(0,
-    //  message.notification!.title.toString(),
-    //  message.notification!.body.toString(),
-    //  notificationDetails)
+    DarwinNotificationDetails darwinNotificationDetails =
+        const DarwinNotificationDetails(presentAlert: true, presentBadge: true, presentSound: true);
+
+    NotificationDetails notificationDetails =
+        NotificationDetails(android: androidNotificationDetails, iOS: darwinNotificationDetails);
+
+    Future.delayed(Duration.zero);
+    _flutterLocalNotificationsPlugin.show(
+        0, message.notification!.title.toString(), message.notification!.body.toString(), notificationDetails);
   }
 
   Future<String> getDeviveToken() async {
