@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     notificationServices.requestNotificationPermission();
-    notificationServices.firebaseInit();
+    notificationServices.firebaseInit(context);
     notificationServices.isTokenRefresh();
     notificationServices.getDeviveToken().then((value) {
       log('Device Token: $value');

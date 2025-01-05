@@ -3,6 +3,7 @@ import 'dart:math' as math;
 
 import 'package:app_settings/app_settings.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_push_notification/features/message_page/presentation/pages/message_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -40,15 +41,22 @@ class NotificationServices {
       android: androidInitializationSettings,
       iOS: iosInitializationSettings,
     );
-    await _flutterLocalNotificationsPlugin.initialize(initializationSettings, onDidReceiveNotificationResponse: (payload) {});
+    await _flutterLocalNotificationsPlugin.initialize(initializationSettings, onDidReceiveNotificationResponse: (payload) {
+      handleMessage(context, message);
+    });
   }
 
-  void firebaseInit() {
+  void firebaseInit(BuildContext context) {
     FirebaseMessaging.onMessage.listen((message) {
       // Logs to print the title and body of the message
       dev.log(message.notification!.title.toString());
       dev.log(message.notification!.body.toString());
+      dev.log(message.data.toString());
+      dev.log(message.data['type']);
+      dev.log(message.data['id']);
 
+      //  For Redirecting to the screen when the message is received and clicked
+      inItLocalNotifications(context, message);
       showNotification(message);
     });
   }
@@ -92,5 +100,17 @@ class NotificationServices {
       event.toString();
       dev.log('isTokenRefreshed: ${event.toString()}');
     });
+  }
+
+  // When the popup is clicked
+  void handleMessage(BuildContext context, RemoteMessage message) {
+    if (message.data['type'] == 'message') {
+      // Navigate to the message page when the message is clicked
+      Navigator.push(context, MaterialPageRoute(
+        builder: (context) {
+          return const MessagePage();
+        },
+      ));
+    }
   }
 }
