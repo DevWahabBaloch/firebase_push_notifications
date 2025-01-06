@@ -11,7 +11,7 @@ class MessagePage extends StatelessWidget {
           'Message Page',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: Colors.red,
       ),
     );
   }

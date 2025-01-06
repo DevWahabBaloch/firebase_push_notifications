@@ -105,6 +105,7 @@ class NotificationServices {
   // When the popup is clicked
   void handleMessage(BuildContext context, RemoteMessage message) {
     if (message.data['type'] == 'message') {
+      dev.log('Message type is ${message.data['type']}. Navigating to MessagePage...');
       // Navigate to the message page when the message is clicked
       Navigator.push(context, MaterialPageRoute(
         builder: (context) {
